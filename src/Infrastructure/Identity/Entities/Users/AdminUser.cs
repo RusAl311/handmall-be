@@ -14,5 +14,6 @@ public class AdminUser
     public byte[] PasswordSalt { get; init; }
     public DateTime TokenCreated { get; set; }
     public DateTime TokenExpires { get; set; }
+    #nullable enable
     public RefreshToken? RefreshToken { get; set; }
 }
