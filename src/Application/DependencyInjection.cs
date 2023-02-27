@@ -1,5 +1,6 @@
 using System.Reflection;
-using MediatR;
+using Application.Interfaces;
+using Application.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -8,8 +9,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(IServiceCollection services)
     {
-        services.AddMediatR(Assembly.GetExecutingAssembly());
-
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+        services.AddTransient<ICategoryRepository, CategoryRepository>();
         return services;
     }
 }
