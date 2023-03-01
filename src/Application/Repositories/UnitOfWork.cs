@@ -13,6 +13,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public ICategoryRepository Categories { get; private set; }
+    public IDepartmentRepository Departments { get; private set; }
 
     public int Complete()
     {
