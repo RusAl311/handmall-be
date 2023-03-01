@@ -1,4 +1,5 @@
 using Application.Models.Category;
+using Application.Models.Department;
 using AutoMapper;
 using Data.Entities;
 
@@ -8,6 +9,7 @@ public class AppMappingProfile : Profile
 {
     public AppMappingProfile()
     {
-        CreateMap<Category, CategoryCreateDto>();
+        CreateMap<CategoryCreateDto, Category>();
+        CreateMap<DepartmentCreateDto, Department>();
     }
 }

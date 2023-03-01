@@ -10,6 +10,7 @@ public class UnitOfWork : IUnitOfWork
     {
         _dbContext = dbContext;
         Categories = new CategoryRepository(_dbContext);
+        Departments = new DepartmentRepository(_dbContext);
     }
 
     public ICategoryRepository Categories { get; private set; }
