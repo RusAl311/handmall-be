@@ -10,6 +10,8 @@ public class AppMappingProfile : Profile
     public AppMappingProfile()
     {
         CreateMap<CategoryCreateDto, Category>();
+        CreateMap<Category, CategoryDto>();
         CreateMap<DepartmentCreateDto, Department>();
+        CreateMap<Department, DepartmentDto>();
     }
 }

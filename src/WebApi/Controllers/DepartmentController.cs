@@ -26,6 +26,15 @@ public class DepartmentController : BaseController
     }
 
     [HttpGet]
+    [Route("getAll-withCategories")]
+    public async Task<IActionResult> GetAllWithCategory()
+    {
+        var departments = await _unitOfWork.Departments.GetAllWithCategory();
+        var departmentsList = _mapper.Map<IEnumerable<DepartmentDto>>(departments);
+        return Ok(departmentsList);
+    }
+
+    [HttpGet]
     [Route("getById")]
     public async Task<IActionResult> GetById(int id)
     {

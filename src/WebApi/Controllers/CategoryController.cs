@@ -1,4 +1,6 @@
 using Application.Interfaces;
+using Application.Models.Category;
+using AutoMapper;
 using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,11 @@ namespace WebApi.Controllers;
 public class CategoryController : BaseController
 {
     private readonly IUnitOfWork _unitOfWork;
-    public CategoryController(IUnitOfWork unitOfWork)
+    private readonly IMapper _mapper;
+    public CategoryController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -32,8 +36,9 @@ public class CategoryController : BaseController
     
     [HttpPost]
     [Route("create")]
-    public async Task<IActionResult> Add(Category category)
+    public async Task<IActionResult> Add(CategoryCreateDto categoryCreateDto)
     {
+        var category = _mapper.Map<Category>(categoryCreateDto);
         await _unitOfWork.Categories.Add(category);
         _unitOfWork.Complete();
         return Ok();
