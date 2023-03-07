@@ -1,3 +1,4 @@
+using Application.Common.Exceptions;
 using Application.Interfaces;
 using Application.Models.Department;
 using AutoMapper;
@@ -39,7 +40,7 @@ public class DepartmentController : BaseController
     public async Task<IActionResult> GetById(int id)
     {
         var department = await _unitOfWork.Departments.GetById(id);
-        if(department == null) return NotFound();
+        if(department == null) throw new NotFoundException("There is no department with id: " + id);
         return Ok(department);
     }
     
